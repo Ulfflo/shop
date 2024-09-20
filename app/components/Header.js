@@ -13,11 +13,11 @@ const Header = () => {
   };
 
   return (
-    <header className="flex justify-between items-center p-4 bg-gray-800 text-white">
+    <header className="flex justify-between items-center p-4 bg-green-800 text-white">
       <Link href="/">
         <div className="flex items-center">
-          <Image src="/images/logo.png" alt="logo" width={80} height={50} />
-          <h1 className="ml-2 text-2xl font-bold">YourShop</h1>
+          <Image src="/images/groda.jpg" alt="logo" width={80} height={50} />
+          <h1 className="ml-2 text-2xl font-bold">The Frog Store</h1>
         </div>
       </Link>
       <div className="flex space-x-4">
