@@ -1,31 +1,48 @@
 import { SitemapStream, streamToPromise } from "sitemap";
 
+async function fetchAllProducts() {
+  const response = await fetch("https://fakestoreapi.com/products");
+  if (!response.ok) {
+    throw new Error("Failed to fetch products");
+  }
+  return await response.json();
+}
+
 export default async function handler(req, res) {
-  const sitemapStream = new SitemapStream({
-    hostname: "https://shop-swart-phi.vercel.app/",
-  });
+  try {
+    const products = await fetchAllProducts();
 
-  // Add static routes
-  sitemapStream.write({
-    url: "/",
-    changefreq: "daily",
-    priority: 1.0,
-  });
+    const sitemapStream = new SitemapStream({
+      hostname: "https://shop-swart-phi.vercel.app/",
+      xmlns: {},
+    });
 
-  // Add dynamic product sitemap URL
-  sitemapStream.write({
-    url: "/api/sitemap-products",
-    changefreq: "daily",
-    priority: 0.8,
-  });
+    // Add static routes
+    sitemapStream.write({
+      url: "/",
+      changefreq: "daily",
+      priority: 1.0,
+    });
 
-  sitemapStream.end();
+    // Add individual product URLs to the sitemap
+    products.forEach((product) => {
+      sitemapStream.write({
+        url: `/product/${product.id}`,
+        changefreq: "weekly",
+        priority: 0.8,
+      });
+    });
 
-  const sitemapOutput = await streamToPromise(sitemapStream).then((data) =>
-    data.toString()
-  );
+    sitemapStream.end();
 
-  res.setHeader("Content-Type", "application/xml");
-  res.write(sitemapOutput);
-  res.end();
+    const sitemapOutput = await streamToPromise(sitemapStream).then((data) =>
+      data.toString()
+    );
+
+    res.setHeader("Content-Type", "application/xml");
+    res.write(sitemapOutput);
+    res.end();
+  } catch (error) {
+    res.status(500).end("Error generating sitemap");
+  }
 }
