@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://shop-swart-phi.vercel.app/
+
+# Sitemaps
+Sitemap: https://shop-swart-phi.vercel.app/sitemap.xml
