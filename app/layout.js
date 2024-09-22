@@ -8,10 +8,10 @@ import ClientLayout from "./components/ClientLayout";
 
 // Export metadata for SEO and social sharing
 export const metadata = {
-  title: "The Frog Store - Home",
+  title: "The Frog Store",
   description: "Welcome to the best store online!",
   openGraph: {
-    title: "The Frog Store - Home",
+    title: "The Frog Store",
     description: "Browse a wide variety of products at amazing prices!",
     url: "https://shop-swart-phi.vercel.app/",
     images: [
@@ -25,7 +25,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "The Frog Store - Home",
+    title: "The Frog Store",
     description: "Shop for the best products online!",
     images: ["https://shop-swart-phi.vercel.app/images/groda.jpg"],
   },

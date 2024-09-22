@@ -1,4 +1,11 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {};
-
-export default nextConfig;
+module.exports = {
+  async redirects() {
+    return [
+      {
+        source: "/robots.txt",
+        destination: "/api/robots", // Redirect to your API route
+        permanent: true,
+      },
+    ];
+  },
+};
