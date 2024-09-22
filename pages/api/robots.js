@@ -1,8 +1,8 @@
-// pages/api/robots.js
+
 export default function handler(req, res) {
   const isProduction = process.env.NODE_ENV === "production";
 
-  const sitemapUrl = "https://shop-swart-phi.vercel.app/sitemap"; // Justera URL:en till din sitemap
+  const sitemapUrl = "https://shop-swart-phi.vercel.app/api/sitemap"; 
 
   const robotsTxt = isProduction
     ? `User-agent: *
