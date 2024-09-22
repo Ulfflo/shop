@@ -16,7 +16,7 @@ export const metadata = {
     url: "https://shop-swart-phi.vercel.app/",
     images: [
       {
-        url: "https://shop-swart-phi.vercel.app/images/groda.jpg", // Link to your image
+        url: "https://shop-swart-phi.vercel.app/images/groda.jpg", 
         width: 1200,
         height: 630,
         alt: "Frog with sunglasses",
