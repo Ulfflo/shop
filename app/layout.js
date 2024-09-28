@@ -1,8 +1,6 @@
 import "./globals.css";
 import ClientLayout from "./components/ClientLayout";
-import Script from "next/script";
-import * as gtag from "../lib/gtag"; // Import gtag functions
-import Analytics from "./components/Analytics"; // Import the Analytics component
+import { GoogleTagManager } from "@next/third-parties/google"; // Import the GoogleTagManager component
 
 // Export metadata for SEO and social sharing
 export const metadata = {
@@ -32,30 +30,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <head>
-        {/* Add Google Analytics Script */}
-        <Script
-          strategy="afterInteractive"
-          src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
-        />
-        <Script
-          id="gtag-init"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${gtag.GA_TRACKING_ID}', {
-                page_path: window.location.pathname,
-              });
-            `,
-          }}
-        />
-      </head>
+      <head>{/* Head elements like metadata and title can go here */}</head>
       <body>
         <ClientLayout>{children}</ClientLayout>
-        <Analytics /> {/* Include the Analytics component */}
+
+        {/* Include the Google Tag Manager with your GTM ID */}
+        <GoogleTagManager gtmId="GTM-KFD5SLDV" />
       </body>
     </html>
   );
