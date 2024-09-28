@@ -1,9 +1,8 @@
 import "./globals.css";
 import ClientLayout from "./components/ClientLayout";
-import { useEffect } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
 import Script from "next/script";
 import * as gtag from "../lib/gtag"; // Import gtag functions
+import Analytics from "./components/Analytics"; // Import the Analytics component
 
 // Export metadata for SEO and social sharing
 export const metadata = {
@@ -31,15 +30,6 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-
-  // Track page views on route changes
-  useEffect(() => {
-    const url = pathname + searchParams.toString();
-    gtag.pageview(url); // Send the current path to Google Analytics
-  }, [pathname, searchParams]);
-
   return (
     <html lang="en">
       <head>
@@ -65,6 +55,7 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <ClientLayout>{children}</ClientLayout>
+        <Analytics /> {/* Include the Analytics component */}
       </body>
     </html>
   );
